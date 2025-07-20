@@ -87,7 +87,7 @@ fetchProductsThen();
 
 // Dynamic count based on page
 if (window.location.pathname.includes('products.html')) {
-    fetchProductsAsync(15);  // Show 15 products on products.html
+    fetchProductsAsync(12);  // Show 15 products on products.html
 } else {
     fetchProductsAsync(5);   // Show 5 products on index.html
 }
