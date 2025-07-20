@@ -1,4 +1,6 @@
-
+function capitalizeWords(str) {
+    return str.replace(/\b\w/g, char => char.toUpperCase());
+}
 // Step 3: fetchProductsThen (then/catch version)
 function fetchProductsThen() {
     fetch('https://www.course-api.com/javascript-store-products')
@@ -51,7 +53,7 @@ function displayProducts(products) {
 
         // Product name
         const nameEl = document.createElement('h2');
-        nameEl.textContent = name;
+        nameEl.textContent = capitalizeWords(name);
 
         // Product image
         const imgEl = document.createElement('img');

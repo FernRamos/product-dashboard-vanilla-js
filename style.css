@@ -12,20 +12,25 @@ header {
 }
 
 #product-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     padding: 1rem;
 }
 
 .product-card {
+    display: flex;
+    flex-direction: column;  /* Stack children vertically */
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
     width: 200px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     background-color: #fff;
-    cursor: pointer;                
+    cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -68,6 +73,10 @@ body {
 
 .product-card p {
     margin: 0.3rem 0;
+}
+.product-card .price {
+    margin-top: auto;  /* Push price to bottom */
+    font-weight: bold;
 }
 
 .spinner {
