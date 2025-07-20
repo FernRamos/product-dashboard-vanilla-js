@@ -24,4 +24,40 @@ header {
     padding: 1rem;
     width: 200px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff;
+    cursor: pointer;                
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Hover effect */
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.product-card img {
+    border-radius: 4px;              
+    margin-bottom: 0.5rem;           
+    max-height: 150px;                
+    object-fit: cover;                
+    width: 100%;
+}
+main {
+    padding: 1rem;
+}
+
+main h2 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+} 
