@@ -68,6 +68,9 @@ main a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 main a:hover {
@@ -127,7 +130,9 @@ body {
 }
 
 main {
-    flex: 1; /* Push footer to bottom */
+    flex: 1;
+    padding: 1rem;
+    padding-bottom: 4rem; /* Add bottom space so link is above footer */
 }
 
 footer {
