@@ -1,24 +1,8 @@
+// Refactored to pull live prodcuts from the API
 document.addEventListener("DOMContentLoaded", () => {
-    const productContainer = document.getElementById("product-container");
-
-    // Example product data
-    const products = [
-        { name: "Laptop", price: "$999", category: "Electronics" },
-        { name: "Sneakers", price: "$120", category: "Footwear" },
-        { name: "Watch", price: "$250", category: "Accessories" }
-    ];
-
-    products.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-            <h2>${product.name}</h2>
-            <p>Category: ${product.category}</p>
-            <p>Price: ${product.price}</p>
-        `;
-        productContainer.appendChild(card);
-    });
+    fetchProductsAsync();
 });
+
 // Step 3: fetchProductsThen (then/catch version)
 function fetchProductsThen() {
     fetch('https://www.course-api.com/javascript-store-products')
@@ -37,8 +21,6 @@ function fetchProductsThen() {
             console.error('Fetch error:', error);
         });
 }
-// Call the function after its definition
-// fetchProductsThen();
 
 // Step 4: async/await version
 async function fetchProductsAsync() {
@@ -54,16 +36,44 @@ async function fetchProductsAsync() {
         handleError(error);
     }
 }
-
+// Step 5; displayProducts
 function displayProducts(products) {
-    products.forEach(product => {
-        console.log('Product:', product.fields.name);
+    const container = document.getElementById('product-container');
+    container.innerHTML = '';
+
+    // Loop through the first 5 products
+    products.slice(0, 5).forEach(product => {
+        const { name, price, image } = product.fields;
+
+        // Create product card
+        const card = document.createElement('div');
+        card.classList.add('product-card');
+
+        // Product name
+        const nameEl = document.createElement('h2');
+        nameEl.textContent = name;
+
+        // Product image
+        const imgEl = document.createElement('img');
+        imgEl.src = image[0].url;
+        imgEl.alt = name;
+        imgEl.style.width = '100%'; // Optional: resize image to fit card
+
+        // Product price
+        const priceEl = document.createElement('p');
+        priceEl.textContent = `Price: $${price}`;
+
+        // Append elements to the card
+        card.appendChild(nameEl);
+        card.appendChild(imgEl);
+        card.appendChild(priceEl);
+
+        // Append the card to the container
+        container.appendChild(card);
     });
 }
-
 function handleError(error) {
-    console.error('Fetch failed:', error);
+    console.error(`An error occurred: ${error.message}`);
+    const container = document.getElementById('product-container');
+    container.innerHTML = `<p style="color: red;">An error occurred: ${error.message}</p>`;
 }
-
-// Optional: call to test
-// fetchProductsAsync();
