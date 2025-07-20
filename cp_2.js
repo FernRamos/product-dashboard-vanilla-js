@@ -21,7 +21,7 @@ function fetchProductsThen() {
 }
 
 // Step 4: async/await version
-async function fetchProductsAsync(count = 5) {
+async function fetchProductsAsync(count = 5, startIndex = 0) {
     const loader = document.getElementById('loader');
     loader.style.display = 'block'; // Show spinner
     try {
@@ -31,7 +31,7 @@ async function fetchProductsAsync(count = 5) {
         }
 
         const products = await response.json();
-        displayProducts(products, count);
+        displayProducts(products, count, startIndex);
     } catch (error) {
         handleError(error);
     } finally {
@@ -39,38 +39,33 @@ async function fetchProductsAsync(count = 5) {
     }
 }
 // Step 5; displayProducts
-function displayProducts(products, count = 5) {
+function displayProducts(products, count = 5, startIndex = 0) {
     const container = document.getElementById('product-container');
     container.innerHTML = '';
 
-    // Loop through the first 5 products
-    products.slice(0, count).forEach(product => {
+    const selectedProducts = products.slice(startIndex, startIndex + count);
+
+    selectedProducts.forEach(product => {
         const { name, price, image } = product.fields;
 
-        // Create product card
         const card = document.createElement('div');
         card.classList.add('product-card');
 
-        // Product name
         const nameEl = document.createElement('h2');
         nameEl.textContent = capitalizeWords(name);
 
-        // Product image
         const imgEl = document.createElement('img');
         imgEl.src = image[0].url;
         imgEl.alt = name;
-        imgEl.style.width = '100%'; // Optional: resize image to fit card
 
-        // Product price
         const priceEl = document.createElement('p');
+        priceEl.classList.add('price');
         priceEl.textContent = `Price: $${price}`;
 
-        // Append elements to the card
         card.appendChild(nameEl);
         card.appendChild(imgEl);
         card.appendChild(priceEl);
 
-        // Append the card to the container
         container.appendChild(card);
     });
 }
@@ -85,11 +80,10 @@ function handleError(error) {
 // ✅ Step 7: Call both functions
 fetchProductsThen();
 
-// Dynamic count based on page
 if (window.location.pathname.includes('products.html')) {
-    fetchProductsAsync(12);  // Show 15 products on products.html
+    fetchProductsAsync(12, 5);  // Show remaining products from index 5 (6th product)
 } else {
-    fetchProductsAsync(5);   // Show 5 products on index.html
+    fetchProductsAsync(5, 0);   // Show first 5 products
 }
 document.getElementById('toggle-dark-mode').addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
