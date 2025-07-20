@@ -91,3 +91,16 @@ if (window.location.pathname.includes('products.html')) {
 } else {
     fetchProductsAsync(5);   // Show 5 products on index.html
 }
+document.getElementById('toggle-dark-mode').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('header').classList.toggle('dark-mode');
+    document.querySelector('footer').classList.toggle('dark-mode');
+
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.classList.toggle('dark-mode');
+    });
+
+    document.querySelectorAll('.nav-link a').forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+});
