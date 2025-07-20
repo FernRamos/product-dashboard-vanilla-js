@@ -1,7 +1,3 @@
-// Refactored to pull live prodcuts from the API
-document.addEventListener("DOMContentLoaded", () => {
-    fetchProductsAsync();
-});
 
 // Step 3: fetchProductsThen (then/catch version)
 function fetchProductsThen() {
@@ -24,6 +20,8 @@ function fetchProductsThen() {
 
 // Step 4: async/await version
 async function fetchProductsAsync() {
+    const loader = document.getElementById('loader');
+    loader.style.display = 'block'; // Show spinner
     try {
         const response = await fetch('https://www.course-api.com/javascript-store-products');
         if (!response.ok) {
@@ -34,6 +32,8 @@ async function fetchProductsAsync() {
         displayProducts(products);
     } catch (error) {
         handleError(error);
+    } finally {
+        loader.style.display = 'none'; // Always hide spinner
     }
 }
 // Step 5; displayProducts
@@ -76,8 +76,12 @@ function handleError(error) {
     console.error(`An error occurred: ${error.message}`);
     const container = document.getElementById('product-container');
     container.innerHTML = `<p style="color: red;">An error occurred: ${error.message}</p>`;
+    const loader = document.getElementById('loader');
+    loader.style.display = 'none';
 }
 
 // ✅ Step 7: Call both functions
-fetchProductsThen();
-fetchProductsAsync();
+document.addEventListener("DOMContentLoaded", () => {
+    fetchProductsThen();
+    fetchProductsAsync();
+});

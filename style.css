@@ -61,3 +61,37 @@ footer {
     bottom: 0;
     width: 100%;
 } 
+
+/* ===== Enhancements for better spacing and readability ===== */
+header h1, main h2 {
+    margin: 0;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.product-card h2 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.product-card p {
+    margin: 0.3rem 0;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; 
+    border-top: 8px solid #333;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+    display: none; /* Hidden by default */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
