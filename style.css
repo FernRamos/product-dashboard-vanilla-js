@@ -30,7 +30,7 @@ header {
     border-radius: 8px;
     padding: 1rem;
     width: 200px;
-    height: 300px; /* fixed height */
+    height: 220px; /* fixed height */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     background-color: #fff;
     cursor: pointer;
