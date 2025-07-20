@@ -23,11 +23,14 @@ header {
 
 .product-card {
     display: flex;
-    flex-direction: column;  /* Stack children vertically */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
     width: 200px;
+    height: 300px; /* fixed height */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     background-color: #fff;
     cursor: pointer;
@@ -41,10 +44,10 @@ header {
 }
 
 .product-card img {
-    border-radius: 4px;              
-    margin-bottom: 0.5rem;           
-    max-height: 150px;                
-    object-fit: cover;                
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    height: 120px;    /* fixed height */
+    object-fit: cover;
     width: 100%;
 }
 main {
@@ -69,14 +72,17 @@ body {
 .product-card h2 {
     font-size: 1.2rem;
     margin: 0.5rem 0;
+    text-align: center;
+    min-height: 40px; /* ensures name block size is consistent */
 }
 
 .product-card p {
     margin: 0.3rem 0;
 }
 .product-card .price {
-    margin-top: auto;  /* Push price to bottom */
+    margin-top: auto;
     font-weight: bold;
+    text-align: center;
 }
 
 .spinner {
