@@ -170,6 +170,12 @@ footer {
 body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
+    
+}
+body.dark-mode main h2 {
+    color: #e0e0e0; /* Light gray text */
+    border-bottom: 2px solid #555; 
+    padding-bottom: 0.5rem;
 }
 header.dark-mode, footer.dark-mode {
     background-color: #222;
@@ -199,4 +205,16 @@ button:hover {
 .product-card.dark-mode h2,
 .product-card.dark-mode p {
     color: #e0e0e0;
+}
+.nav-link a.dark-mode {
+    background-color: #333;
+    color: #e0e0e0;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.nav-link a.dark-mode:hover {
+    color: #fff;
+    text-decoration: underline;
+    background-color: #555;
 }
