@@ -21,7 +21,7 @@ function fetchProductsThen() {
 }
 
 // Step 4: async/await version
-async function fetchProductsAsync() {
+async function fetchProductsAsync(count = 5) {
     const loader = document.getElementById('loader');
     loader.style.display = 'block'; // Show spinner
     try {
@@ -31,7 +31,7 @@ async function fetchProductsAsync() {
         }
 
         const products = await response.json();
-        displayProducts(products);
+        displayProducts(products, count);
     } catch (error) {
         handleError(error);
     } finally {
@@ -39,12 +39,12 @@ async function fetchProductsAsync() {
     }
 }
 // Step 5; displayProducts
-function displayProducts(products) {
+function displayProducts(products, count = 5) {
     const container = document.getElementById('product-container');
     container.innerHTML = '';
 
     // Loop through the first 5 products
-    products.slice(0, 5).forEach(product => {
+    products.slice(0, count).forEach(product => {
         const { name, price, image } = product.fields;
 
         // Create product card
@@ -83,7 +83,11 @@ function handleError(error) {
 }
 
 // ✅ Step 7: Call both functions
-document.addEventListener("DOMContentLoaded", () => {
-    fetchProductsThen();
-    fetchProductsAsync();
-});
+fetchProductsThen();
+
+// Dynamic count based on page
+if (window.location.pathname.includes('products.html')) {
+    fetchProductsAsync(15);  // Show 15 products on products.html
+} else {
+    fetchProductsAsync(5);   // Show 5 products on index.html
+}
