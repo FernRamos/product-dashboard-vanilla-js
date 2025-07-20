@@ -77,3 +77,7 @@ function handleError(error) {
     const container = document.getElementById('product-container');
     container.innerHTML = `<p style="color: red;">An error occurred: ${error.message}</p>`;
 }
+
+// ✅ Step 7: Call both functions
+fetchProductsThen();
+fetchProductsAsync();
