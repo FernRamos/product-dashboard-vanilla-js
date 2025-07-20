@@ -146,3 +146,7 @@ footer {
     left: 0;
     z-index: 1000;
 }
+.nav-link {
+    text-align: center;
+    margin-top: 1rem;
+}
